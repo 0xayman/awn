@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IdeaController;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Signup;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [IdeaController::class, 'index'])->name('home');
 
 Route::get('/signup', Signup::class)->middleware('guest')->name('auth.signup');
 Route::get('/login', Login::class)->middleware('guest')->name('auth.login');
