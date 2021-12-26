@@ -46,7 +46,7 @@ class Signup extends Component
 
         auth()->login($user);
 
-        redirect('/');
+        $this->redirect('/');
     }
 
     public function render()

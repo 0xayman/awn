@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Signup;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,4 @@ Route::get('/', function () {
 })->middleware('auth')->name('home');
 
 Route::get('/signup', Signup::class)->name('auth.signup');
+Route::get('/login', Login::class)->name('auth.login');
