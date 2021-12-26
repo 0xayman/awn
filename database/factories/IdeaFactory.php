@@ -14,7 +14,7 @@ class IdeaFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->word(4),
+            'title' => $this->faker->sentence(2),
             'content' => $this->faker->paragraph(3),
             'votes' => $this->faker->numberBetween(1, 100),
         ];

@@ -9,7 +9,7 @@ class IdeaController extends Controller
 {
     public function index()
     {
-        $ideas = Idea::paginate(4);
+        $ideas = Idea::paginate(5);
 
         return view('home', ['ideas' => $ideas]);
     }
