@@ -13,6 +13,11 @@ class Navbar extends Component
         $this->redirect('/');
     }
 
+    public function goToLoginPage()
+    {
+        $this->redirect('/login');
+    }
+
     public function render()
     {
         return view('livewire.navbar');

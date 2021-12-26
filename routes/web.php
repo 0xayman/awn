@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-})->middleware('auth')->name('home');
+})->name('home');
 
-Route::get('/signup', Signup::class)->name('auth.signup');
-Route::get('/login', Login::class)->name('auth.login');
+Route::get('/signup', Signup::class)->middleware('guest')->name('auth.signup');
+Route::get('/login', Login::class)->middleware('guest')->name('auth.login');
