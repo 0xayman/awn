@@ -35,4 +35,9 @@ class User extends Authenticatable
     protected $casts = [
         // 
     ];
+
+    public function ideas()
+    {
+        return $this->hasMany(Idea::class);
+    }
 }
