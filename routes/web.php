@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [IdeaController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return view('home');
+});
 
 Route::get('/signup', Signup::class)->middleware('guest')->name('auth.signup');
 Route::get('/login', Login::class)->middleware('guest')->name('auth.login');

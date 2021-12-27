@@ -22,11 +22,7 @@
             </div>
         </div>
         <div class="col-span-4">
-            @foreach ($ideas as $idea)
-                <livewire:idea-card :idea="$idea" :key="$idea->id" />
-            @endforeach
-
-            <div class="bg-white">{{ $ideas->links() }}</div>
+            <livewire:ideas-list />
         </div>
     </div>
 @endsection
