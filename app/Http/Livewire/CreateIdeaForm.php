@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Idea;
+use App\Models\Tag;
 use Livewire\Component;
 
 class CreateIdeaForm extends Component
@@ -23,16 +24,20 @@ class CreateIdeaForm extends Component
         $this->validate();
 
         $user = auth()->user();
-        dd($user->ideas);
+
         $idea = Idea::create([
             'title' => $this->title,
             'content' => $this->content,
             'user_id' => $user->id,
         ]);
 
-        $idea->tags()->attach($this->tags);
+        foreach ($this->tags as $tag) {
+            $tag = Tag::firstOrCreate(['name' => $tag]);
+            $idea->tags()->attach($tag);
+        }
 
-        $this->resetInput();
+        $this->emit('idea-added');
+        $this->reset();
     }
 
     public function render()

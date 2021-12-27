@@ -11,6 +11,8 @@ class Idea extends Model
 {
     use HasFactory, HasSlug;
 
+    const PER_PAGE = 10;
+
     /**
      * The attributes that are mass assignable.
      *

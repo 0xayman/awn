@@ -15,13 +15,13 @@
              <div class="mt-3">
                  <label for="tags" class="block mb-2 font-semibold text-gray-300 text-md">Tags</label>
                  <input class="w-full px-4 py-2 bg-gray-300 rounded-lg focus:outline-none" placeholder="Add tag..."
-                     @keydown.tab.prevent="if (newTag.trim() !== '') tags.push(newTag.trim()); newTag = ''"
+                     @keydown.space.prevent="if (newTag.trim() !== '') tags.push(newTag.trim()); newTag = ''"
                      @keydown.backspace="if (newTag.trim() === '') tags.pop()" x-model="newTag">
                  @error('tags') <p class="mt-1 text-sm text-red-500"> {{ $message }} </p> @enderror
                  <div class="flex flex-wrap mt-1">
                      <template x-for="tag in tags" :key="tag">
-                         <span
-                             class="px-2 m-1 text-sm font-bold leading-loose bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300"
+                         <span @click="tags.splice(tags.indexOf(tag), 1)"
+                             class="px-2 m-1 text-sm font-bold leading-loose bg-gray-200 rounded-full cursor-pointer hover:bg-red-300"
                              x-text="tag"></span>
                          {{-- <span class="tags-input-tag">
                              <span x-text="tag"></span>
