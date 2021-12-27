@@ -427,6 +427,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .col-span-4 {
   grid-column: span 4 / span 4;
 }
+.col-span-6 {
+  grid-column: span 6 / span 6;
+}
 .m-1 {
   margin: 0.25rem;
 }
@@ -886,6 +889,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     right: auto;
     bottom: auto;
     left: auto;
+  }
+
+  .sm\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
+  .sm\:col-span-4 {
+    grid-column: span 4 / span 4;
   }
 
   .sm\:ml-6 {
