@@ -24,7 +24,9 @@
 <body class="bg-white dark:bg-gray-900">
 
     @livewire('navbar')
+
     @yield('content')
+
 
     @livewireScripts
 </body>

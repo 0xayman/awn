@@ -11,7 +11,8 @@
          </div>
      </div>
      <div>
-         <h1 class="text-xl text-gray-300">{{ $idea->title }}</h1>
+         <a href={{ route('ideas.show', $idea->slug) }}
+             class="text-xl text-gray-300 hover:underline">{{ $idea->title }}</a>
          <p class="mt-2 text-gray-400">
              {{ $idea->content }}
          </p>
