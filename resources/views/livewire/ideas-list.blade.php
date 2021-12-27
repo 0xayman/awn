@@ -1,9 +1,25 @@
 <div>
-    <div class="flex flex-wrap items-center w-full">
+    <div class="flex flex-wrap items-center justify-between w-full gap-4">
+        <div
+            class="relative flex items-center flex-grow overflow-hidden text-gray-500 bg-gray-300 rounded cursor-pointer h-15">
+            <input type="text" class="relative self-center flex-grow px-3 py-2 text-xl outline-none cursor-pointer"
+                placeholder="Search ..." disabled />
+            <div>
+                <span class="flex items-center px-5 text-gray-500 bg-gray-300 cursor-pointer">
+                    <i>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </i>
+                </span>
+            </div>
+        </div>
         <div x-data="{ open: @entangle('toggleSortMenu') }" class="relative">
             <div x-on:click="open = true"
-                class="relative flex flex-wrap items-center w-full overflow-hidden text-gray-500 bg-gray-300 rounded cursor-pointer h-15">
-                <input type="text" class="relative self-center px-3 py-2 text-xl outline-none cursor-pointer"
+                class="relative flex items-center overflow-hidden text-gray-500 bg-gray-300 rounded cursor-pointer h-15">
+                <input type="text" class="relative self-center flex-grow px-3 py-2 text-xl outline-none cursor-pointer"
                     value="Sort By" disabled />
                 <div>
                     <span class="flex items-center px-5 text-gray-500 bg-gray-300 cursor-pointer">
@@ -17,7 +33,7 @@
                                 { name: 'Highest Votes', value: 'votes' },
                             ]
                         }"
-                class="absolute right-0 w-full mt-1 overflow-hidden origin-top-left bg-gray-300 rounded shadow-lg focus:outline-none">
+                class="absolute right-0 w-1/2 mt-1 overflow-hidden origin-top-left bg-gray-300 rounded shadow-lg focus:outline-none">
                 <template x-for="option in options">
                     <div x-on:click="$wire.sortIdeas(option.value)" x-text="option.name"
                         class="px-3 py-2 text-lg text-gray-900 cursor-pointer hover:bg-gray-500">

@@ -449,6 +449,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 .col-span-6 {
   grid-column: span 6 / span 6;
 }
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
 .m-1 {
   margin: 0.25rem;
 }
@@ -585,6 +594,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-px {
   width: 1px;
 }
+.w-1\/3 {
+  width: 33.333333%;
+}
+.w-2\/6 {
+  width: 33.333333%;
+}
+.w-32 {
+  width: 8rem;
+}
+.w-1\/2 {
+  width: 50%;
+}
 .min-w-full {
   min-width: 100%;
 }
@@ -635,6 +656,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .grid-cols-6 {
   grid-template-columns: repeat(6, minmax(0, 1fr));
 }
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
 .flex-col {
   flex-direction: column;
 }
@@ -661,6 +685,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .gap-8 {
   gap: 2rem;
+}
+.gap-4 {
+  gap: 1rem;
+}
+.gap-16 {
+  gap: 4rem;
 }
 .space-x-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -801,6 +831,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-red-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(252 165 165 / var(--tw-bg-opacity));
+}
+.bg-gray-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
 .p-6 {
   padding: 1.5rem;
