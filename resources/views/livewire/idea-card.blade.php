@@ -15,5 +15,10 @@
          <p class="mt-2 text-gray-400">
              {{ $idea->content }}
          </p>
+         <div class='flex flex-wrap gap-8 mt-4'>
+             <a href="#"
+                 class="font-medium text-gray-300 transition-colors duration-100 hover:text-gray-200">{{ $idea->user->username }}</a>
+             <p class="font-medium text-gray-300">{{ $idea->created_at->diffForHumans() }}</p>
+         </div>
      </div>
  </div>
