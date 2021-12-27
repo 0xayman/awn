@@ -5,8 +5,8 @@
              <p class="text-sm font-medium text-gray-300">Votes</p>
 
          </div>
-         <div class="mt-4">
-             <button wire:click='vote'
+         <div x-data="{ alert: false }" class="relative mt-4">
+             <button wire:click='vote' @click="@js(!Auth::check()) ? alert = true : alert = false"
                  class="px-4 py-1 font-semibold tracking-wide text-white bg-blue-900 rounded-md shadow-md">
                  @if ($idea->votes->contains('user_id', Auth::id()))
                      Unvote
@@ -14,6 +14,12 @@
                      Vote
                  @endif
              </button>
+             <div x-show="alert" @click.away="alert = false" x-cloak
+                 class="absolute w-40 py-1 origin-top-right bg-red-500 rounded-md shadow-md left-16 top-6 focus:outline-none">
+                 <div class="px-2 py-1 text-sm text-gray-100">
+                     Please <a href="/login" class="font-medium text-white">login</a> to vote
+                 </div>
+             </div>
          </div>
      </div>
      <div>

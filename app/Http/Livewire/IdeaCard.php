@@ -13,6 +13,10 @@ class IdeaCard extends Component
 
     public function vote()
     {
+        if (!auth()->check()) {
+            return;
+        }
+
         $userVote = $this->idea->votes()->where('user_id', auth()->id())->first();
 
         if ($userVote) {
