@@ -25,8 +25,7 @@
 
     @livewire('navbar')
 
-    @yield('content')
-
+    {{ $slot }}
 
     @livewireScripts
 </body>

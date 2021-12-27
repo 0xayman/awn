@@ -3,6 +3,7 @@
 use App\Http\Controllers\IdeaController;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Signup;
+use App\Http\Livewire\Home;
 use App\Http\Livewire\ShowSingleIdea;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', Home::class)->name('home');
 
 Route::get('/ideas/{idea:slug}', ShowSingleIdea::class)->name('ideas.show');
 
