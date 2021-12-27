@@ -30,6 +30,14 @@ class Idea extends Model
             ->saveSlugsTo('slug');
     }
 
+    /**
+     * 
+     */
+    public function scopeSearch($query, $keywords)
+    {
+        return $query->where('title', 'LIKE', '%' . $keywords . '%')->orWhere('content', 'LIKE', '%' . $keywords . '%');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
