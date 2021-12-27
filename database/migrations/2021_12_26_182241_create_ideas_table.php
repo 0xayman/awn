@@ -20,7 +20,6 @@ class CreateIdeasTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('content');
-            $table->integer('votes')->default(0);
             $table->timestamps();
         });
     }

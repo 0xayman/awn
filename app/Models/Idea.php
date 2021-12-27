@@ -40,8 +40,8 @@ class Idea extends Model
         return $this->belongsToMany(Tag::class, 'idea_tag', 'idea_id', 'tag_id');
     }
 
-    public function user_votes()
+    public function votes()
     {
-        return $this->hasMany(UserVote::class);
+        return $this->hasMany(Vote::class);
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserVotesTable extends Migration
+class CreateVotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateUserVotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_votes', function (Blueprint $table) {
+        Schema::create('votes', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Idea::class);
@@ -30,6 +30,6 @@ class CreateUserVotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_votes');
+        Schema::dropIfExists('votes');
     }
 }
