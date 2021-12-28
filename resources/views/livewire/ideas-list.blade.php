@@ -1,7 +1,7 @@
 <div>
     <div class="flex flex-wrap items-center justify-between w-full gap-4">
         <div class="relative flex items-center flex-grow overflow-hidden bg-gray-700 rounded-lg h-15">
-            <input wire:model.lazy='keywords' type="text" wire:keydown.enter="search"
+            <input wire:model.defer='query' type="text" wire:keydown.enter="search"
                 class="relative self-center flex-grow px-3 py-2 text-xl bg-gray-700 outline-none "
                 placeholder="Search ..." />
             <div>

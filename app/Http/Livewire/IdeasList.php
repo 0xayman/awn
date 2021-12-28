@@ -15,7 +15,13 @@ class IdeasList extends Component
 
     public $sortBy = 'created_at';
     public $toggleSortMenu = false;
-    public $keywords = '';
+    public $query = '';
+
+    protected $queryString = [
+        'query' => ['except' => ''],
+        'page' => ['except' => 1],
+        'sortBy' => ['except' => 'created_at'],
+    ];
 
     public function sortIdeas($sort_by)
     {
@@ -32,9 +38,9 @@ class IdeasList extends Component
     public function render()
     {
         if ($this->sortBy == 'votes') {
-            $ideas = Idea::search($this->keywords)->withCount('votes')->orderBy('votes_count', 'desc')->paginate(Idea::PER_PAGE);
+            $ideas = Idea::search($this->query)->withCount('votes')->orderBy('votes_count', 'desc')->paginate(Idea::PER_PAGE);
         } else {
-            $ideas = Idea::search($this->keywords)->orderBy($this->sortBy, 'desc')->paginate(Idea::PER_PAGE);
+            $ideas = Idea::search($this->query)->orderBy($this->sortBy, 'desc')->paginate(Idea::PER_PAGE);
         }
         return view('livewire.ideas-list', [
             'ideas' => $ideas,
