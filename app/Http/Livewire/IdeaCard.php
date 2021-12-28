@@ -34,7 +34,32 @@ class IdeaCard extends Component
 
     public function addComment()
     {
-        dd($this->newComment);
+        if (!auth()->check()) {
+            return;
+        }
+
+        $this->idea->comments()->create([
+            'user_id' => auth()->id(),
+            'body' => $this->newComment,
+        ]);
+
+        $this->newComment = '';
+        $this->emit('comment-added');
+    }
+
+    public function addReply()
+    {
+        if (!auth()->check()) {
+            return;
+        }
+
+        $this->idea->comments()->create([
+            'user_id' => auth()->id(),
+            'body' => $this->newComment,
+            'parent_id' => $this->newComment,
+        ]);
+
+        $this->newComment = '';
     }
 
     public function render()

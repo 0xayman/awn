@@ -52,4 +52,9 @@ class Idea extends Model
     {
         return $this->hasMany(Vote::class);
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
+    }
 }
