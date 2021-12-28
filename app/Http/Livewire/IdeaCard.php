@@ -8,6 +8,8 @@ class IdeaCard extends Component
 {
 
     public $idea;
+    public $toggleCommentBox = false;
+    public $newComment = '';
 
     protected $listeners = ['user-voted' => '$refresh'];
 
@@ -28,6 +30,11 @@ class IdeaCard extends Component
         }
 
         $this->emit('user-voted');
+    }
+
+    public function addComment()
+    {
+        dd($this->newComment);
     }
 
     public function render()

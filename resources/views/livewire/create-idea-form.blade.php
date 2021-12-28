@@ -23,12 +23,6 @@
                          <span @click="tags.splice(tags.indexOf(tag), 1)"
                              class="px-2 m-1 text-sm font-bold leading-loose bg-gray-200 rounded-full cursor-pointer hover:bg-red-300"
                              x-text="tag"></span>
-                         {{-- <span class="tags-input-tag">
-                             <span x-text="tag"></span>
-                             <button type="button" class="tags-input-remove" @click="tags = tags.filter(i => i !== tag)">
-                                 &times;
-                             </button>
-                         </span> --}}
                      </template>
                  </div>
              </div>
