@@ -3,23 +3,93 @@
         <livewire:idea-card :idea="$idea" />
         <div class="mt-6">
             <h3 class="text-2xl text-gray-400">Comments</h3>
-            <div>
+            <div class="mb-8">
                 @foreach ($idea->comments as $comment)
-                    <div class="flex items-start gap-4 mt-5">
-                        <div class="flex-shrink-0">
-                            <img src="https://ui-avatars.com/api/?name={{ $comment->user->username }}"
-                                alt="{{ $comment->user->username }}"
-                                class="rounded-full shadow-inner shadow-slate-500 w-14 h-14" />
-                        </div>
-                        <div class="flex-grow px-6 py-4 bg-gray-800 rounded-md">
-                            <div class="flex justify-between">
-                                <div class="text-lg font-medium text-gray-300">{{ $comment->user->username }}</div>
-                                <div class="font-medium text-gray-300">{{ $comment->created_at->diffForHumans() }}
+                    <div x-data="{toggleReplies: false}">
+                        <div class="flex items-start gap-4 mt-5">
+                            <div class="flex-shrink-0">
+                                <img src="https://ui-avatars.com/api/?name={{ $comment->user->username }}"
+                                    alt="{{ $comment->user->username }}"
+                                    class="rounded-full shadow-inner shadow-slate-500 w-14 h-14" />
+                            </div>
+                            <div class="flex-grow px-6 py-4 bg-gray-800 rounded-md">
+                                <div class="flex justify-between">
+                                    <div class="text-lg font-medium text-gray-300">{{ $comment->user->username }}
+                                    </div>
+                                    <div class="font-medium text-gray-300">{{ $comment->created_at->diffForHumans() }}
+                                    </div>
+                                </div>
+                                <p class="mt-2 text-gray-400">
+                                    {{ $comment->body }}
+                                </p>
+                                <div class="flex mt-4">
+                                    <div x-data="{ toggleCommentBox: false, alert: false }"
+                                        class="relative flex justify-between flex-grow">
+                                        <div x-on:click="
+                                            @js(!Auth::check()) ? alert = true : toggleCommentBox = true
+                                        " class="flex gap-1 cursor-pointer">
+                                            <i class="text-gray-300">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                                                </svg>
+                                            </i>
+                                            <span class="font-medium text-gray-300 select-none">Reply</span>
+                                        </div>
+                                        <div>
+                                            <span x-on:click="toggleReplies = true"
+                                                class="font-medium text-gray-300 cursor-pointer select-none">Show
+                                                replies</span>
+                                        </div>
+                                        <div x-show="alert" @click.away="alert = false" x-cloak
+                                            class="absolute w-40 py-1 origin-top-right bg-red-500 rounded-md shadow-md left-16 top-6 focus:outline-none">
+                                            <div class="px-2 py-1 text-sm text-gray-100">
+                                                Please <a href="/login" class="font-medium text-white">login</a> to
+                                                reply
+                                            </div>
+                                        </div>
+                                        <div x-show="toggleCommentBox" @keydown.escape="toggleCommentBox = false"
+                                            @click.away="toggleCommentBox = false" x-cloak
+                                            class="absolute w-full px-4 py-4 mt-2 overflow-hidden origin-top-left bg-gray-700 rounded-md shadow-lg focus:outline-none">
+                                            <div>
+                                                <textarea wire:model.defer='newComment' rows="5" name="newComment"
+                                                    id="newComment" placeholder="Write your reply!"
+                                                    class="w-full px-4 py-4 text-sm bg-gray-300 rounded-md resize-none focus:outline-none "></textarea>
+                                                @error('newComment') <p class="mt-1 text-sm text-red-500">
+                                                    {{ $message }} </p> @enderror
+                                            </div>
+                                            <button wire:click='addReply({{ $comment->id }})'
+                                                class="w-full px-4 py-1 font-semibold tracking-wide text-white bg-blue-900 rounded-md shadow-md">Post</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <p class="mt-2 text-gray-400">
-                                {{ $comment->body }}
-                            </p>
+                        </div>
+                        <div x-show="toggleReplies" @click.away="toggleReplies = false" x-cloak>
+                            @foreach ($comment->replies as $reply)
+                                <div class="flex items-start gap-4 mt-5 ml-20">
+                                    <div class="flex-shrink-0">
+                                        <img src="https://ui-avatars.com/api/?name={{ $reply->user->username }}"
+                                            alt="{{ $reply->user->username }}"
+                                            class="rounded-full shadow-inner shadow-slate-500 w-14 h-14" />
+                                    </div>
+                                    <div class="flex-grow px-6 py-4 bg-gray-800 rounded-md">
+                                        <div class="flex justify-between">
+                                            <div class="text-lg font-medium text-gray-300">
+                                                {{ $reply->user->username }}
+                                            </div>
+                                            <div class="font-medium text-gray-300">
+                                                {{ $reply->created_at->diffForHumans() }}
+                                            </div>
+                                        </div>
+                                        <p class="mt-2 text-gray-400">
+                                            {{ $reply->body }}
+                                        </p>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 @endforeach
