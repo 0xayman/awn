@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class UserVoteNotification extends Notification
+class UserVoteNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
