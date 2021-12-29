@@ -103,8 +103,14 @@
             <p class="text-gray-400">
                 Id vel ipsam et quos voluptas eos rem. Qui illo doloribus veritatis voluptatum eum quis.
             </p>
-            <button
-                class="w-2/3 px-4 py-2 mt-4 font-semibold tracking-wide text-white bg-blue-900 rounded-md shadow-md">Follow</button>
+            <button wire:click='follow({{ $idea->user }})'
+                class="w-2/3 px-4 py-2 mt-4 font-semibold tracking-wide text-white bg-blue-900 rounded-md shadow-md">
+                @if (Auth::user()->isFollowing($idea->user))
+                    Unfollow
+                @else
+                    Follow
+                @endif
+            </button>
         </div>
     </div>
 </div>
