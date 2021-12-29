@@ -428,6 +428,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 .top-4 {
   top: 1rem;
 }
+.top-8 {
+  top: 2rem;
+}
+.top-10 {
+  top: 2.5rem;
+}
+.top-12 {
+  top: 3rem;
+}
 .z-20 {
   z-index: 20;
 }
@@ -705,6 +714,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-indigo-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(79 70 229 / var(--tw-bg-opacity));
+}
+.bg-red-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
 }
 .p-6 {
   padding: 1.5rem;

@@ -104,14 +104,23 @@
             <p class="text-gray-400">
                 Id vel ipsam et quos voluptas eos rem. Qui illo doloribus veritatis voluptatum eum quis.
             </p>
-            <button wire:click='follow({{ $idea->user }})'
-                class="w-2/3 px-4 py-2 mt-4 font-semibold tracking-wide text-white bg-blue-900 rounded-md shadow-md">
-                @if (Auth::check() && $idea->user->followers->contains(Auth::user()))
-                    Unfollow
-                @else
-                    Follow
-                @endif
-            </button>
+            <div x-data="{ alert: false }" class="relative flex justify-center w-full">
+                <button x-on:click="@js(!Auth::check()) ? alert = true : alert = false"
+                    wire:click='follow({{ $idea->user }})'
+                    class="w-2/3 px-4 py-2 mt-4 font-semibold tracking-wide text-white bg-blue-900 rounded-md shadow-md ">
+                    @if (Auth::check() && $idea->user->followers->contains(Auth::user()))
+                        Unfollow
+                    @else
+                        Follow
+                    @endif
+                </button>
+                <div x-show="alert" @click.away="alert = false" x-cloak
+                    class="absolute w-40 py-1 origin-bottom-left bg-red-500 rounded-md shadow-md top-12 focus:outline-none">
+                    <div class="px-2 py-1 text-sm text-gray-100">
+                        Please <a href="/login" class="font-medium text-white">login</a> to follow this user
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

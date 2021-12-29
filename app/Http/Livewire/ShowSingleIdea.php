@@ -21,6 +21,11 @@ class ShowSingleIdea extends Component
 
     public function follow(User $user)
     {
+
+        if (!auth()->check()) {
+            return;
+        }
+
         $me = User::where('id', auth()->id())->first();
         if ($me->isFollowing($user)) {
             $me->unFollow($user);
