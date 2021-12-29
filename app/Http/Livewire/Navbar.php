@@ -7,6 +7,10 @@ use Livewire\Component;
 class Navbar extends Component
 {
 
+    protected $listeners = [
+        "echo:notificationsChannel,.Illuminate\Notifications\Events\BroadcastNotificationCreated"  => '$refresh'
+    ];
+
     public function logout()
     {
         auth()->logout();

@@ -13,13 +13,7 @@ class IdeaCard extends Component
 
     protected $listeners = [
         'user-voted' => '$refresh',
-        "echo:notificationsChannel"  => 'notifyUser'
     ];
-
-    public function notifyUser()
-    {
-        dd('Notification Recieved');
-    }
 
     public function vote()
     {

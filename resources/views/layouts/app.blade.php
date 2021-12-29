@@ -17,7 +17,7 @@
 
     </style>
 
-
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body class="bg-white dark:bg-gray-900">
@@ -26,9 +26,12 @@
 
     {{ $slot }}
 
-    @livewireScripts
 
     <script src="{{ mix('js/app.js') }}"></script>
+
+    @livewireScripts
+
+
 </body>
 
 </html>
