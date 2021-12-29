@@ -5,7 +5,7 @@
             <h3 class="text-2xl text-gray-400">Comments</h3>
             <div class="mb-8">
                 @foreach ($idea->comments->reverse() as $comment)
-                    <div x-data="{toggleReplies: false}">
+                    <div x-data="{toggleReplies: false}" x-on:replied="toggleReplies = true" :key="$comment->id">
                         <div class="flex items-start gap-4 mt-5">
                             <div class="flex-shrink-0">
                                 <img src="https://ui-avatars.com/api/?name={{ $comment->user->username }}"
@@ -23,11 +23,11 @@
                                     {{ $comment->body }}
                                 </p>
                                 <div class="flex mt-4">
-                                    <div x-data="{ toggleCommentBox: false, alert: false }"
+                                    <div x-data="{ toggleCommentForm: false, alert: false }"
                                         class="relative flex flex-grow">
                                         <div class="relative flex justify-between flex-grow">
                                             <div x-on:click="
-                                            @js(!Auth::check()) ? alert = true : toggleCommentBox = true"
+                                            @js(!Auth::check()) ? alert = true : toggleCommentForm = true"
                                                 class="flex gap-1 cursor-pointer">
                                                 <i class="text-gray-300">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6"
@@ -54,10 +54,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div x-show="toggleCommentBox" @keydown.escape="toggleCommentBox = false"
-                                            @click.away="toggleCommentBox = false" x-cloak
+                                        <div x-show="toggleCommentForm" @keydown.escape="toggleCommentForm = false"
+                                            @click.away="toggleCommentForm = false" x-cloak
+                                            x-on:replied="toggleCommentForm = false"
                                             class="absolute z-20 w-full px-4 py-4 mt-2 overflow-hidden origin-bottom-left bg-gray-900 rounded-md shadow-lg top-4 focus:outline-none">
-                                            <livewire:comment-form :idea="$idea" :parentComment="$comment">
+                                            <livewire:comment-form :idea="$idea" :parentComment="$comment"
+                                                :key="$comment->id">
                                         </div>
                                     </div>
                                 </div>
