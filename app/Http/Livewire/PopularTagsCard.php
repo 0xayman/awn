@@ -17,7 +17,7 @@ class PopularTagsCard extends Component
 
     public function filterIdeas(Tag $id)
     {
-        dd($id);
+        $this->emit('filterIdeas', $id);
     }
 
     public function render()
