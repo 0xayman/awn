@@ -2,14 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Idea;
 use Livewire\Component;
 
 class IdeaCard extends Component
 {
 
-    public $idea;
-    public $toggleCommentBox = false;
-    public $newComment = '';
+    public Idea $idea;
 
     protected $listeners = ['user-voted' => '$refresh'];
 
@@ -30,36 +29,6 @@ class IdeaCard extends Component
         }
 
         $this->emit('user-voted');
-    }
-
-    public function addComment()
-    {
-        if (!auth()->check()) {
-            return;
-        }
-
-        $this->idea->comments()->create([
-            'user_id' => auth()->id(),
-            'body' => $this->newComment,
-        ]);
-
-        $this->newComment = '';
-        $this->emit('comment-added');
-    }
-
-    public function addReply()
-    {
-        if (!auth()->check()) {
-            return;
-        }
-
-        $this->idea->comments()->create([
-            'user_id' => auth()->id(),
-            'body' => $this->newComment,
-            'parent_id' => $this->newComment,
-        ]);
-
-        $this->newComment = '';
     }
 
     public function render()

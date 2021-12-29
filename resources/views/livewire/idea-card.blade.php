@@ -32,7 +32,7 @@
                  class="font-medium text-gray-300 transition-colors duration-100 hover:text-gray-200">{{ $idea->user->username }}</a>
              <p class="font-medium text-gray-300">{{ $idea->created_at->diffForHumans() }}</p>
              {{-- Add Comment --}}
-             <div x-data="{ toggleCommentBox: @entangle('toggleCommentBox'), alert: false }" class="relative flex-grow">
+             <div x-data="{ toggleCommentBox: false, alert: false }" class="relative z-20 flex-grow">
                  <div x-on:click="
                     @js(!Auth::check()) ? alert = true : toggleCommentBox = true
                  " class="flex flex-grow gap-1 cursor-pointer">
@@ -53,15 +53,8 @@
                  </div>
                  <div x-show="toggleCommentBox" @keydown.escape="toggleCommentBox = false"
                      @click.away="toggleCommentBox = false" x-cloak
-                     class="absolute w-full px-4 py-4 mt-2 overflow-hidden origin-top-left bg-gray-900 rounded-md shadow-lg focus:outline-none">
-                     <div>
-                         <textarea wire:model.defer='newComment' rows="5" name="newComment" id="newComment"
-                             placeholder="Write your comment!"
-                             class="w-full px-4 py-4 text-sm bg-gray-300 rounded-md resize-none focus:outline-none "></textarea>
-                         @error('newComment') <p class="mt-1 text-sm text-red-500"> {{ $message }} </p> @enderror
-                     </div>
-                     <button wire:click='addComment'
-                         class="w-full px-4 py-1 font-semibold tracking-wide text-white bg-blue-900 rounded-md shadow-md">Post</button>
+                     class="absolute z-10 w-full px-4 py-4 mt-2 overflow-hidden origin-bottom bg-gray-900 rounded-md shadow-lg focus:outline-none">
+                     <livewire:comment-form :idea="$idea">
                  </div>
              </div>
          </div>
