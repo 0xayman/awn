@@ -17,6 +17,11 @@ class Navbar extends Component
         $this->redirect('/');
     }
 
+    public function markNotificationsAsRead()
+    {
+        // auth()->user()->unreadNotifications->markAsRead();
+    }
+
     public function goToLoginPage()
     {
         $this->redirect('/login');
