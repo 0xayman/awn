@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Idea;
+use App\Notifications\UserVoteNotification;
 use Livewire\Component;
 
 class IdeaCard extends Component
@@ -10,7 +11,15 @@ class IdeaCard extends Component
 
     public Idea $idea;
 
-    protected $listeners = ['user-voted' => '$refresh'];
+    protected $listeners = [
+        'user-voted' => '$refresh',
+        "echo:notificationsChannel"  => 'notifyUser'
+    ];
+
+    public function notifyUser()
+    {
+        dd('Notification Recieved');
+    }
 
     public function vote()
     {
@@ -26,6 +35,10 @@ class IdeaCard extends Component
             $this->idea->votes()->create([
                 'user_id' => auth()->id(),
             ]);
+
+            $this->idea->user->notify(new UserVoteNotification($this->idea, auth()->user()));
+            // channelName: private.App.Models.{User}.{user_id}
+
         }
 
         $this->emit('user-voted');
