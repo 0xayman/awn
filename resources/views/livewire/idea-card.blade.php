@@ -32,8 +32,10 @@
                  class="font-medium text-gray-300 transition-colors duration-100 hover:text-gray-200">{{ $idea->user->username }}</a>
              <p class="font-medium text-gray-300">{{ $idea->created_at->diffForHumans() }}</p>
              {{-- Add Comment --}}
-             <div x-data="{ toggleCommentBox: @entangle('toggleCommentBox') }" class="relative flex-grow">
-                 <div x-on:click="toggleCommentBox = true" class="flex flex-grow gap-1 cursor-pointer">
+             <div x-data="{ toggleCommentBox: @entangle('toggleCommentBox'), alert: false }" class="relative flex-grow">
+                 <div x-on:click="
+                    @js(!Auth::check()) ? alert = true : toggleCommentBox = true
+                 " class="flex flex-grow gap-1 cursor-pointer">
                      <i class="text-gray-300">
                          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                              stroke="currentColor">
@@ -42,6 +44,12 @@
                          </svg>
                      </i>
                      <span class="font-medium text-gray-300 select-none">Comment</span>
+                 </div>
+                 <div x-show="alert" @click.away="alert = false" x-cloak
+                     class="absolute w-40 py-1 origin-top-right bg-red-500 rounded-md shadow-md left-16 top-6 focus:outline-none">
+                     <div class="px-2 py-1 text-sm text-gray-100">
+                         Please <a href="/login" class="font-medium text-white">login</a> to comment
+                     </div>
                  </div>
                  <div x-show="toggleCommentBox" @keydown.escape="toggleCommentBox = false"
                      @click.away="toggleCommentBox = false" x-cloak
