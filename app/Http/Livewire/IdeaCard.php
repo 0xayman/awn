@@ -17,7 +17,7 @@ class IdeaCard extends Component
 
     public function vote()
     {
-        if (!auth()->check()) {
+        if (!auth()->check() || auth()->id() == $this->idea->user->id) {
             return;
         }
 
