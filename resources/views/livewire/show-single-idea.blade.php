@@ -4,7 +4,7 @@
         <div class="mt-6">
             <h3 class="text-2xl text-gray-400">Comments</h3>
             <div class="mb-8">
-                @foreach ($idea->comments->reverse() as $comment)
+                @foreach ($comments as $comment)
                     <div x-data="{toggleReplies: false}" x-on:replied="toggleReplies = true" :key="$comment->id">
                         <div class="flex items-start gap-4 mt-5">
                             <div class="flex-shrink-0">
@@ -91,6 +91,7 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="mt-4"> {{ $comments->links() }} </div>
             </div>
         </div>
     </div>
@@ -105,7 +106,7 @@
             </p>
             <button wire:click='follow({{ $idea->user }})'
                 class="w-2/3 px-4 py-2 mt-4 font-semibold tracking-wide text-white bg-blue-900 rounded-md shadow-md">
-                @if (Auth::user()->isFollowing($idea->user))
+                @if (Auth::check() && $idea->user->followers->contains(Auth::user()))
                     Unfollow
                 @else
                     Follow

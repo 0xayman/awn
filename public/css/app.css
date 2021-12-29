@@ -416,26 +416,20 @@ Ensure the default browser behavior of the `hidden` attribute.
 .top-6 {
   top: 1.5rem;
 }
+.top-7 {
+  top: 1.75rem;
+}
 .right-0 {
   right: 0px;
 }
 .left-0 {
   left: 0px;
 }
-.top-7 {
-  top: 1.75rem;
-}
 .top-4 {
   top: 1rem;
 }
-.top-8 {
-  top: 2rem;
-}
 .z-20 {
   z-index: 20;
-}
-.z-10 {
-  z-index: 10;
 }
 .z-0 {
   z-index: 0;
@@ -580,17 +574,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .origin-top-right {
   transform-origin: top right;
 }
-.origin-bottom {
-  transform-origin: bottom;
-}
-.origin-top-left {
-  transform-origin: top left;
-}
 .origin-bottom-left {
   transform-origin: bottom left;
 }
 .origin-bottom-right {
   transform-origin: bottom right;
+}
+.origin-top-left {
+  transform-origin: top left;
 }
 .cursor-pointer {
   cursor: pointer;
@@ -616,14 +607,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 .flex-wrap {
   flex-wrap: wrap;
 }
-.content-end {
-  align-content: flex-end;
-}
 .items-start {
   align-items: flex-start;
-}
-.items-end {
-  align-items: flex-end;
 }
 .items-center {
   align-items: center;
@@ -636,9 +621,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .justify-between {
   justify-content: space-between;
-}
-.justify-items-end {
-  justify-items: end;
 }
 .gap-6 {
   gap: 1.5rem;
@@ -723,10 +705,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-indigo-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(79 70 229 / var(--tw-bg-opacity));
-}
-.bg-red-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
 }
 .p-6 {
   padding: 1.5rem;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +32,8 @@ class ShowSingleIdea extends Component
 
     public function render()
     {
-        return view('livewire.show-single-idea');
+        return view('livewire.show-single-idea', [
+            'comments' => $this->idea->comments()->latest()->paginate(5, ['*'], 'cp'),
+        ]);
     }
 }
