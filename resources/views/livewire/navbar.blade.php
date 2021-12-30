@@ -70,6 +70,16 @@
                                         </span>
                                         Start following you.
                                     </div>
+                                @elseif ($notification->data['type'] == 'add_idea_notification')
+                                    <div
+                                        class="px-2 py-2 transition-colors duration-100 rounded cursor-pointer hover:bg-gray-800">
+                                        <span class="font-medium">
+                                            {{ $notification->data['user']['username'] }}
+                                        </span>
+                                        Posted new idea: <span class="font-medium">
+                                            {{ $notification->data['idea']['title'] }}
+                                        </span>
+                                    </div>
                                 @endif
                             @endforeach
                         @else

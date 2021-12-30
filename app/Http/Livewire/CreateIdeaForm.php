@@ -4,7 +4,9 @@ namespace App\Http\Livewire;
 
 use App\Models\Idea;
 use App\Models\Tag;
+use App\Notifications\UserAddIdeaNotification;
 use Livewire\Component;
+use Notification;
 
 class CreateIdeaForm extends Component
 {
@@ -35,6 +37,12 @@ class CreateIdeaForm extends Component
             $tag = Tag::firstOrCreate(['name' => $tag]);
             $idea->tags()->attach($tag);
         }
+
+        // get user followers
+        $followers = $user->followers;
+
+        // send notification to followers
+        Notification::send($followers, new UserAddIdeaNotification($idea, $user));
 
         $this->emit('idea-added');
         $this->reset();
