@@ -80,6 +80,16 @@
                                             {{ $notification->data['idea']['title'] }}
                                         </span>
                                     </div>
+                                @elseif ($notification->data['type'] == 'comment_notification')
+                                    <div
+                                        class="px-2 py-2 transition-colors duration-100 rounded cursor-pointer hover:bg-gray-800">
+                                        <span class="font-medium"> {{ $notification->data['user']['username'] }}
+                                        </span>
+                                        Commented
+                                        on your idea: <span class="font-medium">
+                                            {{ $notification->data['idea']['title'] }}
+                                        </span>
+                                    </div>
                                 @endif
                             @endforeach
                         @else

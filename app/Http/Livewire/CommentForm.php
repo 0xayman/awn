@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Idea;
+use App\Notifications\UserCommentedNotification;
 use Livewire\Component;
 
 class CommentForm extends Component
@@ -22,6 +23,11 @@ class CommentForm extends Component
             'body' => $this->comment,
             'parent_id' => $this->parentComment ? $this->parentComment->id : null,
         ]);
+
+        if (!$this->parentComment) {
+            // notify the author of the idea
+            $this->idea->user->notify(new UserCommentedNotification($this->idea, auth()->user()));
+        }
 
         $this->comment = '';
         $this->emit('comment-added');
