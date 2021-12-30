@@ -8,7 +8,8 @@ class Navbar extends Component
 {
 
     protected $listeners = [
-        "echo:notificationsChannel,.Illuminate\Notifications\Events\BroadcastNotificationCreated"  => '$refresh'
+        "echo:notificationsChannel,.Illuminate\Notifications\Events\BroadcastNotificationCreated"  => '$refresh',
+        "notifications-read" => '$refresh'
     ];
 
     public function logout()
@@ -19,7 +20,9 @@ class Navbar extends Component
 
     public function markNotificationsAsRead()
     {
-        // auth()->user()->unreadNotifications->markAsRead();
+        auth()->user()->unreadNotifications->markAsRead();
+
+        $this->emit('notifications-read');
     }
 
     public function goToLoginPage()

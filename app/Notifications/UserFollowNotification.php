@@ -2,19 +2,17 @@
 
 namespace App\Notifications;
 
-use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class UserVoteNotification extends Notification implements ShouldQueue
+class UserFollowNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $idea;
-    public $user;
+    public $follower; // the user who follow
     public $type;
 
     /**
@@ -22,11 +20,10 @@ class UserVoteNotification extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Idea $idea, User $user)
+    public function __construct(User $follower)
     {
-        $this->idea = $idea;
-        $this->user = $user;
-        $this->type = 'vote_notification';
+        $this->follower = $follower;
+        $this->type = 'follow_notification';
     }
 
     /**
@@ -63,8 +60,7 @@ class UserVoteNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'user' => $this->user,
-            'idea' => $this->idea,
+            'follower' => $this->follower,
             'type' => $this->type,
         ];
     }

@@ -105,8 +105,7 @@
                 Id vel ipsam et quos voluptas eos rem. Qui illo doloribus veritatis voluptatum eum quis.
             </p>
             <div x-data="{ alert: false }" class="relative flex justify-center w-full">
-                <button x-on:click="@js(!Auth::check()) ? alert = true : alert = false"
-                    wire:click='follow({{ $idea->user }})'
+                <button x-on:click="@js(!Auth::check()) ? alert = true : alert = false" wire:click='follow'
                     class="w-2/3 px-4 py-2 mt-4 font-semibold tracking-wide text-white bg-blue-900 rounded-md shadow-md ">
                     @if (Auth::check() && $idea->user->followers->contains(Auth::user()))
                         Unfollow

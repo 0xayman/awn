@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\User;
+use App\Notifications\UserFollowNotification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -19,18 +20,21 @@ class ShowSingleIdea extends Component
 
     protected $listeners = ['comment-added' => '$refresh', 'follow' => '$refresh'];
 
-    public function follow(User $user)
+    public function follow()
     {
 
         if (!auth()->check()) {
             return;
         }
 
-        $me = User::where('id', auth()->id())->first();
-        if ($me->isFollowing($user)) {
-            $me->unFollow($user);
+        $authUser = User::find(Auth::id());
+
+        if ($authUser->isFollowing($this->idea->user)) {
+            $authUser->unFollow($this->idea->user);
         } else {
-            $me->follow($user);
+            $authUser->follow($this->idea->user);
+
+            $this->idea->user->notify(new UserFollowNotification($authUser));
         }
         $this->emit('follow');
     }
