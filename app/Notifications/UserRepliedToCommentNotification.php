@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class UserCommentedNotification extends Notification implements ShouldQueue
+class UserRepliedToCommentNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -26,9 +26,8 @@ class UserCommentedNotification extends Notification implements ShouldQueue
     {
         $this->idea = $idea;
         $this->user = $user;
-        $this->type = 'comment_notification';
+        $this->type = 'reply_notification';
     }
-
     /**
      * Get the notification's delivery channels.
      *
