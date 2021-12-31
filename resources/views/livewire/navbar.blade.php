@@ -130,8 +130,9 @@
                         <div x-show="open" @click.away="open = false" x-cloak
                             class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                            <a href="#" wire:click="logout" class="block px-4 py-2 text-sm text-gray-700"
-                                role="menuitem" tabindex="-1" id="user-menu-item-0">Profile</a>
+                            <a href="{{ route('profiles.me') }}" wire:click="logout"
+                                class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                                id="user-menu-item-0">Profile</a>
                             <button wire:click="logout" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
                                 tabindex="-1" id="user-menu-item-1">Logout</button>
                         </div>

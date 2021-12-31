@@ -99,10 +99,10 @@
         <div class="flex flex-col items-center p-6 bg-gray-800 shadow-lg rounded-xl">
             <img src="https://ui-avatars.com/api/?name={{ $idea->user->username }}"
                 alt="{{ $idea->user->username }}" class="w-24 h-24 rounded-full" />
-            <a href="#"
+            <a href="{{ route('profiles.show', $idea->user->slug) }}"
                 class="my-3 text-xl font-medium text-gray-300 transition-colors duration-100 hover:text-gray-200">{{ $idea->user->username }}</a>
             <p class="text-gray-400">
-                Id vel ipsam et quos voluptas eos rem. Qui illo doloribus veritatis voluptatum eum quis.
+                {{ $idea->user->bio ?? 'No Bio' }}
             </p>
             <div x-data="{ alert: false }" class="relative flex justify-center w-full">
                 <button x-on:click="@js(!Auth::check()) ? alert = true : alert = false" wire:click='follow'
