@@ -107,7 +107,8 @@
                             </div>
                         @endif
                         <div class="mt-3">
-                            <button class="w-full px-4 py-1 bg-blue-900 rounded shadow-sm">Show All</button>
+                            <a href="{{ route('notifications') }}"
+                                class="block w-full px-4 py-1 bg-blue-900 rounded shadow-sm">Show All</a>
                         </div>
                     </div>
                 </div>
