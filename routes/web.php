@@ -6,6 +6,7 @@ use App\Http\Livewire\Auth\Signup;
 use App\Http\Livewire\Home;
 use App\Http\Livewire\ShowSingleIdea;
 use App\Http\Livewire\Notifications;
+use App\Http\Livewire\Profile;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +20,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Home::class)->name('home');
+Route::get('/{url?}', Home::class)->where(['url' => 'ideas'])->name('home');
 
 Route::get('/ideas/{idea:slug}', ShowSingleIdea::class)->name('ideas.show');
 Route::get('/notifications', Notifications::class)->name('notifications');
+Route::get('/profile', Profile::class)->name('profile');
 
 Route::get('/signup', Signup::class)->middleware('guest')->name('auth.signup');
 Route::get('/login', Login::class)->middleware('guest')->name('auth.login');
