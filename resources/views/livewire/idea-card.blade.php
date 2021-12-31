@@ -1,5 +1,5 @@
- <div class="flex gap-6 p-6 mb-6 bg-gray-800 shadow-lg rounded-xl">
-     <div class="text-center">
+ <div class="grid grid-cols-8 gap-6 p-6 mb-6 bg-gray-800 shadow-lg rounded-xl">
+     <div class="order-2 col-span-8 text-center md:col-span-2 md:order-1">
          <div class="flex flex-col items-center justify-center px-8 py-4 bg-gray-900 rounded-lg shadow-md">
              <p class="text-2xl font-bold text-gray-400">{{ $idea->votes->count() }}</p>
              <p class="text-sm font-medium text-gray-300">Votes</p>
@@ -7,7 +7,7 @@
          <div x-data="{ alert: false }" class="relative mt-4">
              <button wire:click='vote'
                  @click="@js(!Auth::check()) || @js($idea->user->id) == @js(Auth::id()) ? alert = true : alert = false"
-                 class="px-4 py-1 font-semibold tracking-wide text-white bg-blue-900 rounded-md shadow-md">
+                 class="w-full px-4 py-1 font-semibold tracking-wide text-white bg-blue-900 rounded-md shadow-md">
                  @if ($idea->votes->contains('user_id', Auth::id()))
                      Unvote
                  @else
@@ -26,13 +26,13 @@
              </div>
          </div>
      </div>
-     <div>
+     <div class="order-1 col-span-8 md:col-span-6 md:order-2">
          <a href={{ route('ideas.show', $idea->slug) }}
              class="text-xl text-gray-300 hover:underline">{{ $idea->title }}</a>
          <p class="mt-2 text-gray-400">
              {{ $idea->content }}
          </p>
-         <div x-data="{ toggleCommentBox: false, alert: false }" class='relative flex gap-8 mt-4'>
+         <div x-data="{ toggleCommentBox: false, alert: false }" class='relative flex flex-wrap gap-8 mt-4'>
              <a href="#"
                  class="font-medium text-gray-300 transition-colors duration-100 hover:text-gray-200">{{ $idea->user->username }}</a>
              <p class="font-medium text-gray-300">{{ $idea->created_at->diffForHumans() }}</p>
