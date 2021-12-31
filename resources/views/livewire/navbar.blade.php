@@ -50,59 +50,58 @@
                     @endif
                     <div x-show="open" @click.away="open = false, $wire.markNotificationsAsRead()" x-cloak
                         class="absolute z-20 px-4 py-2 mt-2 origin-bottom-right bg-gray-700 rounded-md shadow-lg top-5 focus:outline-none">
-                        @if ($user->unreadNotifications->count() > 0)
-                            @foreach ($user->unreadNotifications as $notification)
-                                @if ($notification->data['type'] == 'vote_notification')
-                                    <div
-                                        class="px-2 py-2 transition-colors duration-100 rounded cursor-pointer hover:bg-gray-800">
-                                        <span class="font-medium"> {{ $notification->data['user']['username'] }}
-                                        </span>
-                                        Voted
-                                        on your idea: <span class="font-medium">
-                                            {{ $notification->data['idea']['title'] }}
-                                        </span>
-                                    </div>
-                                @elseif ($notification->data['type'] == 'follow_notification')
-                                    <div
-                                        class="px-2 py-2 transition-colors duration-100 rounded cursor-pointer hover:bg-gray-800">
-                                        <span class="font-medium">
-                                            {{ $notification->data['follower']['username'] }}
-                                        </span>
-                                        Start following you.
-                                    </div>
-                                @elseif ($notification->data['type'] == 'add_idea_notification')
-                                    <div
-                                        class="px-2 py-2 transition-colors duration-100 rounded cursor-pointer hover:bg-gray-800">
-                                        <span class="font-medium">
-                                            {{ $notification->data['user']['username'] }}
-                                        </span>
-                                        Posted new idea: <span class="font-medium">
-                                            {{ $notification->data['idea']['title'] }}
-                                        </span>
-                                    </div>
-                                @elseif ($notification->data['type'] == 'comment_notification')
-                                    <div
-                                        class="px-2 py-2 transition-colors duration-100 rounded cursor-pointer hover:bg-gray-800">
-                                        <span class="font-medium"> {{ $notification->data['user']['username'] }}
-                                        </span>
-                                        Commented
-                                        on your idea: <span class="font-medium">
-                                            {{ $notification->data['idea']['title'] }}
-                                        </span>
-                                    </div>
-                                @elseif ($notification->data['type'] == 'reply_notification')
-                                    <div
-                                        class="px-2 py-2 transition-colors duration-100 rounded cursor-pointer hover:bg-gray-800">
-                                        <span class="font-medium"> {{ $notification->data['user']['username'] }}
-                                        </span>
-                                        Replied to your comment on
-                                        on <span class="font-medium">
-                                            {{ $notification->data['idea']['title'] }}
-                                        </span>
-                                    </div>
-                                @endif
-                            @endforeach
-                        @else
+                        @foreach ($user->unreadNotifications as $notification)
+                            @if ($notification->data['type'] == 'vote_notification')
+                                <a href="{{ route('ideas.show', $notification->data['idea']['slug']) }}"
+                                    class="block px-2 py-2 transition-colors duration-100 rounded cursor-pointer hover:bg-gray-800">
+                                    <span class="font-medium"> {{ $notification->data['user']['username'] }}
+                                    </span>
+                                    Voted
+                                    on your idea: <span class="font-medium">
+                                        {{ $notification->data['idea']['title'] }}
+                                    </span>
+                                </a>
+                            @elseif ($notification->data['type'] == 'follow_notification')
+                                <a href="#profile page}"
+                                    class="block px-2 py-2 transition-colors duration-100 rounded cursor-pointer hover:bg-gray-800">
+                                    <span class="font-medium">
+                                        {{ $notification->data['follower']['username'] }}
+                                    </span>
+                                    Start following you.
+                                </a>
+                            @elseif ($notification->data['type'] == 'add_idea_notification')
+                                <a href="{{ route('ideas.show', $notification->data['idea']['slug']) }}"
+                                    class="block px-2 py-2 transition-colors duration-100 rounded cursor-pointer hover:bg-gray-800">
+                                    <span class="font-medium">
+                                        {{ $notification->data['user']['username'] }}
+                                    </span>
+                                    Posted new idea: <span class="font-medium">
+                                        {{ $notification->data['idea']['title'] }}
+                                    </span>
+                                </a>
+                            @elseif ($notification->data['type'] == 'comment_notification')
+                                <a href="{{ route('ideas.show', $notification->data['idea']['slug']) }}"
+                                    class="block px-2 py-2 transition-colors duration-100 rounded cursor-pointer hover:bg-gray-800">
+                                    <span class="font-medium"> {{ $notification->data['user']['username'] }}
+                                    </span>
+                                    Commented
+                                    on your idea: <span class="font-medium">
+                                        {{ $notification->data['idea']['title'] }}
+                                    </span>
+                                </a>
+                            @elseif ($notification->data['type'] == 'reply_notification')
+                                <a href="{{ route('ideas.show', $notification->data['idea']['slug']) }}"
+                                    class="block px-2 py-2 transition-colors duration-100 rounded cursor-pointer hover:bg-gray-800">
+                                    <span class="font-medium"> {{ $notification->data['user']['username'] }}
+                                    </span>
+                                    Replied to your comment on
+                                    on <span class="font-medium">
+                                        {{ $notification->data['idea']['title'] }}
+                                    </span>
+                                </a>
+                            @endif
+                        @endforeach
+                        @if ($user->unreadNotifications->count() == 0)
                             <div>
                                 <p>No New Notifications
                             </div>
